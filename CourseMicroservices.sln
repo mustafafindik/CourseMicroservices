@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9DDF5466-A5AA-4E48-9D3F-0326BC60A938}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{E9861FA5-9271-4803-97D1-E39D7AD88363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Catalog", "Services\Catalog\Course.Services.Catalog\Course.Services.Catalog.csproj", "{C2ED6A3B-39CD-4B6E-AC5A-D567F20C13BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2ED6A3B-39CD-4B6E-AC5A-D567F20C13BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2ED6A3B-39CD-4B6E-AC5A-D567F20C13BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2ED6A3B-39CD-4B6E-AC5A-D567F20C13BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2ED6A3B-39CD-4B6E-AC5A-D567F20C13BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E9861FA5-9271-4803-97D1-E39D7AD88363} = {9DDF5466-A5AA-4E48-9D3F-0326BC60A938}
+		{C2ED6A3B-39CD-4B6E-AC5A-D567F20C13BE} = {E9861FA5-9271-4803-97D1-E39D7AD88363}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14EC9333-B53A-4C3C-9D57-46669E10F432}
+	EndGlobalSection
+EndGlobal
