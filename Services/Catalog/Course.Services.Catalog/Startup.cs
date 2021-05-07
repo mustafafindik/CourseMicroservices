@@ -1,3 +1,7 @@
+using Course.Services.Catalog.Repositories.Abstract;
+using Course.Services.Catalog.Repositories.Concrete;
+using Course.Services.Catalog.Services.Abstract;
+using Course.Services.Catalog.Services.Concrete;
 using Course.Services.Catalog.Utilities.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +31,12 @@ namespace Course.Services.Catalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
+            services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddScoped<ICourseService, CourseService>();
+
             services.AddAutoMapper(typeof(Startup)); // Bu Tipin/Classýn baðlý olduðu tüm nesleri tarar 
             services.AddControllers();
 
