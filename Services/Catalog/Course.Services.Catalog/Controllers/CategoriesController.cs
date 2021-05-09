@@ -43,7 +43,7 @@ namespace Course.Services.Catalog.Controllers
         }
 
 
-        [HttpGet("{categoryName}")]
+        [HttpGet("GetByCategoryName/{categoryName}")]
         public async Task<IActionResult> GetByCategoryName(string categoryName)
         {
             var response = await _categoryService.GetByNameAsync(categoryName);

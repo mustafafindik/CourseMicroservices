@@ -1,4 +1,5 @@
-﻿using Course.Services.Catalog.Services.Abstract;
+﻿using Course.Services.Catalog.Dtos.Concrete;
+using Course.Services.Catalog.Services.Abstract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -41,7 +42,7 @@ namespace Course.Services.Catalog.Controllers
             return NotFound(response);
         }
 
-        [HttpGet("{courseName}")]
+        [HttpGet("GetByName/{courseName}")]
         public async Task<IActionResult> GetByName(string courseName)
         {
             var response = await _courseService.GetByNameAsync(courseName);
@@ -52,7 +53,7 @@ namespace Course.Services.Catalog.Controllers
             return NotFound(response);
         }
 
-        [HttpGet("{categoryName}")]
+        [HttpGet("GetByCategoryName/{categoryName}")]
         public async Task<IActionResult> GetByCategoryName(string categoryName)
         {
             var response = await _courseService.GetByCategoryNameAsync(categoryName);
@@ -64,10 +65,10 @@ namespace Course.Services.Catalog.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add(Entities.Concrete.Course course)
+        public async Task<IActionResult> Add(CourseCrudDto courseCrudDto)
         {
 
-            var response = await _courseService.AddCourse(course);
+            var response = await _courseService.AddCourse(courseCrudDto);
             if (response.IsSuccess)
             {
                 return Ok(response);
@@ -77,10 +78,10 @@ namespace Course.Services.Catalog.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update(Entities.Concrete.Course course)
+        public async Task<IActionResult> Update(CourseCrudDto courseCrudDto)
         {
 
-            var response = await _courseService.UpdateCourse(course);
+            var response = await _courseService.UpdateCourse(courseCrudDto);
             if (response.IsSuccess)
             {
                 return Ok(response);

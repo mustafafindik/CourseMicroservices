@@ -13,8 +13,8 @@ namespace Course.Services.Catalog.Services.Abstract
         Task<IDataResult<CourseDto>> GetByIdAsync(string id);
         Task<IDataResult<CourseDto>> GetByNameAsync(string courseName);
         Task<IDataResult<CourseDto>> GetByCategoryNameAsync(string categoryName);
-        Task<IResult> AddCourse(Entities.Concrete.Course course);
-        Task<IResult> UpdateCourse(Entities.Concrete.Course course);
+        Task<IResult> AddCourse(CourseCrudDto CourseCrudDto);
+        Task<IResult> UpdateCourse(CourseCrudDto CourseCrudDto);
         Task<IResult> DeleteCourse(string id);
     }
 }

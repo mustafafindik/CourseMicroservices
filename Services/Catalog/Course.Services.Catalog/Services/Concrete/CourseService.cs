@@ -50,14 +50,16 @@ namespace Course.Services.Catalog.Services.Concrete
             return new SuccessDataResult<CourseDto>(queryMap, Messages.CourseGet);
         }
 
-        public async Task<IResult> AddCourse(Entities.Concrete.Course course)
+        public async Task<IResult> AddCourse(CourseCrudDto courseCrudDto)
         {
+            var course = _mapper.Map<Entities.Concrete.Course>(courseCrudDto);
             await _courseRepository.CreateCourse(course);
             return new SuccessResult(Messages.CourseAdded);
         }
 
-        public async Task<IResult> UpdateCourse(Entities.Concrete.Course course)
+        public async Task<IResult> UpdateCourse(CourseCrudDto courseCrudDto)
         {
+            var course = _mapper.Map<Entities.Concrete.Course>(courseCrudDto);
             await _courseRepository.UpdateCourse(course);
             return new SuccessResult(Messages.CourseUpdated);
         }

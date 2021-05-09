@@ -34,7 +34,7 @@ namespace Course.Services.Catalog.Repositories.Concrete
 
         public async Task<Category> GetByNameAsync(string categoryName)
         {
-            var category = await _categoryCollection.Find(p=>p.CategoryName.ToLower().Trim() == categoryName.ToLower().Trim()).FirstOrDefaultAsync();
+            var category = await _categoryCollection.Find(p=>p.CategoryName == categoryName).FirstOrDefaultAsync();
             return category;
         }
 
