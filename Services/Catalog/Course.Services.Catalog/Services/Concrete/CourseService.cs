@@ -43,11 +43,11 @@ namespace Course.Services.Catalog.Services.Concrete
             return new SuccessDataResult<CourseDto>(queryMap, Messages.CourseGet);
         }
 
-        public async Task<IDataResult<CourseDto>> GetByCategoryNameAsync(string categoryName)
+        public async Task<IDataResult<List<CourseDto>>> GetCourseByCategoryId(string categoryId)
         {
-            var query = await _courseRepository.GetByCategoryNameAsync(categoryName);
-            var queryMap = _mapper.Map<CourseDto>(query);
-            return new SuccessDataResult<CourseDto>(queryMap, Messages.CourseGet);
+            var query = await _courseRepository.GetCourseByCategoryId(categoryId);
+            var queryMap = _mapper.Map<List<CourseDto>>(query);
+            return new SuccessDataResult<List<CourseDto>>(queryMap, Messages.CourseGet);
         }
 
         public async Task<IResult> AddCourse(CourseCrudDto courseCrudDto)

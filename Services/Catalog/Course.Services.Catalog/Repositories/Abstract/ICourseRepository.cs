@@ -10,7 +10,7 @@ namespace Course.Services.Catalog.Repositories.Abstract
         Task<IEnumerable<Entities.Concrete.Course>> GetAllAsync();
         Task<Entities.Concrete.Course> GetByIdAsync(string id);
         Task<Entities.Concrete.Course> GetByNameAsync(string courseName);
-        Task<IEnumerable<Entities.Concrete.Course>> GetByCategoryNameAsync(string categoryName);
+        Task<IEnumerable<Entities.Concrete.Course>> GetCourseByCategoryId(string categoryId);
         Task CreateCourse(Entities.Concrete.Course course);
         Task<bool> UpdateCourse(Entities.Concrete.Course course);
         Task<bool> DeleteCourse(string id);

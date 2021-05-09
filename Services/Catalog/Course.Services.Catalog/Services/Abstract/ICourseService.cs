@@ -12,7 +12,7 @@ namespace Course.Services.Catalog.Services.Abstract
         Task<IDataResult<List<CourseDto>>> GetAllAsync();
         Task<IDataResult<CourseDto>> GetByIdAsync(string id);
         Task<IDataResult<CourseDto>> GetByNameAsync(string courseName);
-        Task<IDataResult<CourseDto>> GetByCategoryNameAsync(string categoryName);
+        Task<IDataResult<List<CourseDto>>> GetCourseByCategoryId(string categoryId);
         Task<IResult> AddCourse(CourseCrudDto CourseCrudDto);
         Task<IResult> UpdateCourse(CourseCrudDto CourseCrudDto);
         Task<IResult> DeleteCourse(string id);

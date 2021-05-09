@@ -13,6 +13,7 @@ namespace Course.Services.Catalog.Utilities.Mapping
         public CatologMapping()
         {
             CreateMap<Catalog.Entities.Concrete.Course, CourseDto>().ReverseMap();
+            CreateMap<Catalog.Entities.Concrete.Course, CourseCrudDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Feature, FeatureDto>().ReverseMap();
         }

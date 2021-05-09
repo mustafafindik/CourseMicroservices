@@ -53,10 +53,10 @@ namespace Course.Services.Catalog.Controllers
             return NotFound(response);
         }
 
-        [HttpGet("GetByCategoryName/{categoryName}")]
-        public async Task<IActionResult> GetByCategoryName(string categoryName)
+        [HttpGet("GetByCategoryId/{categoryId}")]
+        public async Task<IActionResult> GetByCategoryId(string categoryId)
         {
-            var response = await _courseService.GetByCategoryNameAsync(categoryName);
+            var response = await _courseService.GetCourseByCategoryId(categoryId);
             if (response.IsSuccess)
             {
                 return Ok(response);

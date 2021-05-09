@@ -101,9 +101,9 @@ namespace Course.Services.Catalog.Repositories.Concrete
             return course;
         }
 
-        public async Task<IEnumerable<Entities.Concrete.Course>> GetByCategoryNameAsync(string categoryName)
+        public async Task<IEnumerable<Entities.Concrete.Course>> GetCourseByCategoryId(string categoryId)
         {
-            FilterDefinition<Entities.Concrete.Course> filter = Builders<Entities.Concrete.Course>.Filter.Eq(p => p.Category.CategoryName, categoryName);
+            FilterDefinition<Entities.Concrete.Course> filter = Builders<Entities.Concrete.Course>.Filter.Eq(p => p.CategoryId, categoryId);
             var courses = await _courseCollection.Find(filter).ToListAsync();
 
             if (courses.Any())
