@@ -1,0 +1,2 @@
+Catalog Api => 5001
+PhotoStock => 5002
