@@ -13,4 +13,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Course.Shared\Course.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
