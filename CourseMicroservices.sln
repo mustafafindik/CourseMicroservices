@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{B0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Identity", "Course.Services.Identity\Course.Services.Identity.csproj", "{67C6CD92-436B-44B1-BEC0-6C552A9AEB58}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discount", "Discount", "{53223D38-82AC-417D-AD3A-F0DE64864BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Discount", "Services\Discount\Course.Services.Discount\Course.Services.Discount.csproj", "{CDD7EC2D-D12E-4C25-A8FB-72BDAFF81BA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +58,10 @@ Global
 		{67C6CD92-436B-44B1-BEC0-6C552A9AEB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67C6CD92-436B-44B1-BEC0-6C552A9AEB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67C6CD92-436B-44B1-BEC0-6C552A9AEB58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDD7EC2D-D12E-4C25-A8FB-72BDAFF81BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD7EC2D-D12E-4C25-A8FB-72BDAFF81BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD7EC2D-D12E-4C25-A8FB-72BDAFF81BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD7EC2D-D12E-4C25-A8FB-72BDAFF81BA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,8 @@ Global
 		{9D0A6FC8-23D0-49B9-92E2-DD9F1C139FF8} = {4A81FFC7-C34E-4C5C-9AC9-2A67BFAB5864}
 		{B0C2F69E-C7A5-42E2-9183-569263A3A046} = {9DDF5466-A5AA-4E48-9D3F-0326BC60A938}
 		{67C6CD92-436B-44B1-BEC0-6C552A9AEB58} = {B0C2F69E-C7A5-42E2-9183-569263A3A046}
+		{53223D38-82AC-417D-AD3A-F0DE64864BC5} = {9DDF5466-A5AA-4E48-9D3F-0326BC60A938}
+		{CDD7EC2D-D12E-4C25-A8FB-72BDAFF81BA8} = {53223D38-82AC-417D-AD3A-F0DE64864BC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14EC9333-B53A-4C3C-9D57-46669E10F432}
