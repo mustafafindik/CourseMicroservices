@@ -30,6 +30,7 @@ namespace Course.Services.Identity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+          
             services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddEntityFrameworkStores<ApplicationDbContext>()
                .AddDefaultTokenProviders();
@@ -60,6 +61,25 @@ namespace Course.Services.Identity
             {
                 endpoints.MapControllers();
             });
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                context.Database.EnsureDeleted();
+                context.Database.Migrate();
+
+                var serviceProvider = serviceScope.ServiceProvider;
+
+
+
+                var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+                if (!userManager.Users.Any())
+                {
+                    userManager.CreateAsync(new ApplicationUser { Email = "f-cakiroglu@outlook.com" }, "1907abcdXX@").Wait();
+                }
+            }
+
         }
     }
 }
