@@ -32,7 +32,7 @@ namespace Course.Services.Basket.Services.Concrete
 
             if (String.IsNullOrEmpty(existBasket))
             {
-                return new ErrorDataResult<BasketDto>("Sepet Alınırken Hata oluştu");
+                return new ErrorDataResult<BasketDto>("Sepet Bulunamadı");
             }
 
             return  new SuccessDataResult<BasketDto>(JsonSerializer.Deserialize<BasketDto>(existBasket), "Sepet Başarıyla Alındı");
