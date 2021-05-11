@@ -1,5 +1,8 @@
 using Course.Services.Identity.Data;
 using Course.Services.Identity.Entities;
+using Course.Services.Identity.Services.Abstract;
+using Course.Services.Identity.Services.Concrete;
+using Course.Services.Identity.Utilities.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -35,6 +38,8 @@ namespace Course.Services.Identity
                .AddEntityFrameworkStores<ApplicationDbContext>()
                .AddDefaultTokenProviders();
 
+            services.AddSingleton<ITokenHelper, JwtHelper>();
+            services.AddTransient<IAuthService, AuthService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
