@@ -64,7 +64,7 @@ namespace Course.Services.Catalog.Controllers
             return NotFound(response);
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> Add(CourseCrudDto courseCrudDto)
         {
 
@@ -77,7 +77,7 @@ namespace Course.Services.Catalog.Controllers
             return BadRequest(response);
         }
 
-        [HttpPost("update")]
+        [HttpPut]
         public async Task<IActionResult> Update(CourseCrudDto courseCrudDto)
         {
 
@@ -91,7 +91,7 @@ namespace Course.Services.Catalog.Controllers
         }
 
 
-        [HttpPost("delete")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
 
