@@ -52,14 +52,26 @@ namespace Course.Services.Catalog.Services.Concrete
 
         public async Task<IResult> UpdateCategory(Category category)
         {
-            await _categoryRepository.UpdateCategory(category);
-            return new SuccessResult(Messages.CategoryUpdated);
+            var query= await _categoryRepository.UpdateCategory(category);
+            if (query)
+            {
+                return new SuccessResult(Messages.CategoryUpdated);
+
+            }
+            return new ErrorResult("Kategori Güncellenemedi");
+
         }
 
         public async Task<IResult> DeleteCategory(string id)
         {
-            await _categoryRepository.DeleteCategory(id);
-            return new SuccessResult(Messages.CategoryDeleted);
+            var query =  await _categoryRepository.DeleteCategory(id);
+            if (query)
+            {
+                return new SuccessResult(Messages.CategoryDeleted);
+            }
+            return new ErrorResult("Kategori Silinemedi");
         }
     }
+            
+    
 }

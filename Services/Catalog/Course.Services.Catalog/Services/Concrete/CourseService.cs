@@ -60,14 +60,24 @@ namespace Course.Services.Catalog.Services.Concrete
         public async Task<IResult> UpdateCourse(CourseCrudDto courseCrudDto)
         {
             var course = _mapper.Map<Entities.Concrete.Course>(courseCrudDto);
-            await _courseRepository.UpdateCourse(course);
-            return new SuccessResult(Messages.CourseUpdated);
+            var query = await _courseRepository.UpdateCourse(course);
+            if (query)
+            {
+                return new SuccessResult(Messages.CourseUpdated);
+            }
+            return new ErrorResult("Kurs Güncellenemedi");
+
         }
 
         public async Task<IResult> DeleteCourse(string id)
         {
-            await _courseRepository.DeleteCourse(id);
-            return new SuccessResult(Messages.CourseDeleted);
+            var query = await _courseRepository.DeleteCourse(id);
+            if (query)
+            {
+                return new SuccessResult(Messages.CourseDeleted);
+            }
+            return new ErrorResult("Kurs Silinemedi");
+
         }
 
     }
