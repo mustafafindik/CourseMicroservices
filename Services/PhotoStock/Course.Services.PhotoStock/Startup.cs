@@ -1,3 +1,5 @@
+using Course.Services.PhotoStock.Services.Abstract;
+using Course.Services.PhotoStock.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +27,7 @@ namespace Course.Services.PhotoStock
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

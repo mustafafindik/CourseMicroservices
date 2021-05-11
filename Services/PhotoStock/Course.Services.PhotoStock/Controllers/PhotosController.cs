@@ -1,5 +1,6 @@
 ﻿using Course.Services.PhotoStock.Dtos;
 using Course.Services.PhotoStock.Helpers;
+using Course.Services.PhotoStock.Services.Abstract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,33 +15,36 @@ namespace Course.Services.PhotoStock.Controllers
     [ApiController]
     public class PhotosController : ControllerBase
     {
+        private readonly IPhotoService _photoService;
+
+        public PhotosController(IPhotoService photoService)
+        {
+            _photoService = photoService;
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> PhotoSaveAsync(IFormFile photo, CancellationToken cancellationToken)
         {
 
-            if (photo != null && photo.Length > 0)
-            {             
-                var filepath =  await FileHelper.Task<string>(photo, cancellationToken);
-                PhotoDto photoDto = new() { Url = filepath };
-
-                return Ok(photoDto);
+            var response = await _photoService.AddPhoto(photo, cancellationToken);
+            if (response.IsSuccess)
+            {
+                return Ok(response);
             }
-
-            return BadRequest();
+            return BadRequest(response);
         }
 
         [HttpDelete]
-        public IActionResult PhotoDelete(string photoUrl)
+        public async Task<IActionResult> PhotoDelete(string photoUrl)
         {
-            
-            if (!FileHelper.FileExist(photoUrl))
+
+            var response = await _photoService.DeletePhoto(photoUrl);
+            if (response.IsSuccess)
             {
-                return BadRequest("Resim yok");
+                return Ok(response);
             }
-
-            FileHelper.Delete(photoUrl);
-
-            return Ok();
+            return BadRequest(response);
         }
     }
 }
