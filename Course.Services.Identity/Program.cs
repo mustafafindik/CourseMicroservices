@@ -20,27 +20,15 @@ namespace Course.Services.Identity
         {
             var host = CreateHostBuilder(args).Build();
 
-            //using (var scope = host.Services.CreateScope())
-            //{
-            //    var serviceProvider = scope.ServiceProvider;
-            //    var config = serviceProvider.GetRequiredService<IConfiguration>();
+            using (var scope = host.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+                var config = serviceProvider.GetRequiredService<IConfiguration>();
 
-            //    await ApplicationDbContextSeed.CreateRootAdmin(serviceProvider, config);
-            //}
-
-            //using (var scope = host.Services.CreateScope())
-            //{
-            //    var serviceProvider = scope.ServiceProvider;
+                await ApplicationDbContextSeed.Seed(serviceProvider, config);
+            }
 
 
-
-            //    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-            //    if (!userManager.Users.Any())
-            //    {
-            //        userManager.CreateAsync(new ApplicationUser { Email = "f-cakiroglu@outlook.com" }, "1907abcdXX@").Wait();
-            //    }
-            //}
 
             await host.RunAsync();
         }
