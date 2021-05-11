@@ -1,8 +1,9 @@
-﻿namespace Course.Shared.Results
+﻿
+namespace Course.Shared.Results
 {
     public class Result : IResult
     {
-       
+
         public Result(bool isSuccess, string message) : this(isSuccess)
         {
             Message = message;

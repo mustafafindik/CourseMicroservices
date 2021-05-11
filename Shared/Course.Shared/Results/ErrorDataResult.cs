@@ -1,4 +1,5 @@
-﻿namespace Course.Shared.Results
+﻿
+namespace Course.Shared.Results
 {
     public class ErrorDataResult<T> : DataResult<T>
     {
