@@ -64,6 +64,10 @@ namespace Course.Services.PhotoStock.Helpers
 
         public static bool FileExist(string photoUrl)
         {
+            if (photoUrl == null)
+            {
+                return false;
+            }
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/photos", photoUrl);
             if (!System.IO.File.Exists(path))
             {
