@@ -4,3 +4,4 @@ PhotoStock => 5002
 Basket => 5003
 Discount => 5004
 Order => 5005
+Order => 5006
