@@ -18,12 +18,18 @@ namespace Course.Services.Order.Infrastructure.Extensions
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<OrderDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), configure =>
+                {
+                    configure.MigrationsAssembly("Course.Services.Order.Infrastructure");
+                })
+                );
+
+
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IOrderRepository, OrderRepository>();
 
-         
+
 
             return services;
         }
