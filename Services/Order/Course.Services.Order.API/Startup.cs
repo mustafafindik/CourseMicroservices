@@ -1,3 +1,4 @@
+using Course.Services.Order.Application.Extensions;
 using Course.Services.Order.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace Course.Services.Order.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructureServices(Configuration);
+            services.AddApplicationServices();
 
 
             services.AddControllers();

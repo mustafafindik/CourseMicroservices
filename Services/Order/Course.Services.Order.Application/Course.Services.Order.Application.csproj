@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Course.Services.Order.Domain\Course.Services.Order.Domain.csproj" />
     <ProjectReference Include="..\Course.Services.Order.Infrastructure\Course.Services.Order.Infrastructure.csproj" />
   </ItemGroup>
