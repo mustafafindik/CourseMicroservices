@@ -3,3 +3,4 @@ Catalog Api => 5001
 PhotoStock => 5002
 Basket => 5003
 Discount => 5004
+Order => 5005
