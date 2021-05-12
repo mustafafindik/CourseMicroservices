@@ -8,5 +8,6 @@ namespace Course.Services.Order.Domain.Repositories
 {
     public interface IOrderRepository : IRepositoryBase<Domain.OrderAggregate.Order>
     {
+        Task<IEnumerable<Domain.OrderAggregate.Order>> GetOrdersByUserId(string userId);
     }
 }
