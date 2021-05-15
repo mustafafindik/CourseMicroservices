@@ -34,17 +34,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Identity", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{8CF28336-402D-457F-A7AE-833EE4CD029A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Order.API", "Services\Order\Course.Services.Order.API\Course.Services.Order.API.csproj", "{1205DBF7-C6A3-4A46-9DD1-2D0965A3CF4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Order.API", "Services\Order\Course.Services.Order.API\Course.Services.Order.API.csproj", "{1205DBF7-C6A3-4A46-9DD1-2D0965A3CF4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Order.Application", "Services\Order\Course.Services.Order.Application\Course.Services.Order.Application.csproj", "{42E72EC9-30FF-46E9-9ABA-DA0F9916B2DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Order.Application", "Services\Order\Course.Services.Order.Application\Course.Services.Order.Application.csproj", "{42E72EC9-30FF-46E9-9ABA-DA0F9916B2DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Order.Domain", "Services\Order\Course.Services.Order.Domain\Course.Services.Order.Domain.csproj", "{0D30768F-3BD5-4586-8F7E-25F9A75E1CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Order.Domain", "Services\Order\Course.Services.Order.Domain\Course.Services.Order.Domain.csproj", "{0D30768F-3BD5-4586-8F7E-25F9A75E1CCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Order.Infrastructure", "Services\Order\Course.Services.Order.Infrastructure\Course.Services.Order.Infrastructure.csproj", "{0D2A30AB-AD39-4CF9-A230-78363F7CD6B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Order.Infrastructure", "Services\Order\Course.Services.Order.Infrastructure\Course.Services.Order.Infrastructure.csproj", "{0D2A30AB-AD39-4CF9-A230-78363F7CD6B3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{BFBFE682-4C04-465B-8237-87332AE54674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Services.Payment", "Services\Payment\Course.Services.Payment\Course.Services.Payment.csproj", "{249B873B-D133-4297-82DE-102BAEF49B85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Payment", "Services\Payment\Course.Services.Payment\Course.Services.Payment.csproj", "{249B873B-D133-4297-82DE-102BAEF49B85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{8CA79E95-B92D-4E2A-BEE3-7BE2F35B13D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Gateway", "Gateways\Course.Gateway\Course.Gateway.csproj", "{54BC449A-99BF-4058-87BE-2962528EA85E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +100,10 @@ Global
 		{249B873B-D133-4297-82DE-102BAEF49B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{249B873B-D133-4297-82DE-102BAEF49B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{249B873B-D133-4297-82DE-102BAEF49B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54BC449A-99BF-4058-87BE-2962528EA85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54BC449A-99BF-4058-87BE-2962528EA85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54BC449A-99BF-4058-87BE-2962528EA85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54BC449A-99BF-4058-87BE-2962528EA85E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +127,7 @@ Global
 		{0D2A30AB-AD39-4CF9-A230-78363F7CD6B3} = {8CF28336-402D-457F-A7AE-833EE4CD029A}
 		{BFBFE682-4C04-465B-8237-87332AE54674} = {9DDF5466-A5AA-4E48-9D3F-0326BC60A938}
 		{249B873B-D133-4297-82DE-102BAEF49B85} = {BFBFE682-4C04-465B-8237-87332AE54674}
+		{54BC449A-99BF-4058-87BE-2962528EA85E} = {8CA79E95-B92D-4E2A-BEE3-7BE2F35B13D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14EC9333-B53A-4C3C-9D57-46669E10F432}
