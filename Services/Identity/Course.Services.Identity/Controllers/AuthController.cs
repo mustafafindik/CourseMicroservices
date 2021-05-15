@@ -31,7 +31,6 @@ namespace Course.Services.Identity.Controllers
             }
 
             var result = _authService.CreateAccessToken(userToLogin.Data);
-            setTokenCookie(_authService.CreateAccessToken(userToLogin.Data).Data.Token);
             if (result.IsSuccess)
             {
                 return Ok(result.Data);
@@ -58,16 +57,6 @@ namespace Course.Services.Identity.Controllers
             }
 
             return BadRequest(result.Message);
-        }
-
-        private void setTokenCookie(string token)
-        {
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(7)
-            };
-            Response.Cookies.Append("refreshToken", token, cookieOptions);
         }
     }
 
