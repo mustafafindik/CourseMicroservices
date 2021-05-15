@@ -6,3 +6,4 @@ Discount => 5004
 Order => 5005
 payment => 5006
 Gateway => 4000
+UI => 4010
