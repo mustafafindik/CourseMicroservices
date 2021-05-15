@@ -82,12 +82,12 @@ namespace Course.Services.Identity.Services.Concrete
 
             var user =  _context.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
             // return null if no user found with token
-            if (user == null) return null;
+            if (user == null) return new ErrorDataResult<AccessToken>("Kullanıcı Bulunamadı");
 
             var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
 
             // return null if token is no longer active
-            if (!refreshToken.IsActive) return null;
+            if (!refreshToken.IsActive) return new ErrorDataResult<AccessToken>("Reflesh Token Aktif değil"); ;
            
             // replace old refresh token with a new one and save
             var newRefreshToken = generateRefreshToken(ipAddress);

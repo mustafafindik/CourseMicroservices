@@ -13,6 +13,6 @@ namespace Course.UI.Services.Abstract
 
         Task<TokenResponse> GetAccessTokenByRefreshToken();
 
-        Task RevokeRefreshToken();
+        Task<IResult> RevokeRefreshToken();
     }
 }

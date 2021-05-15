@@ -33,20 +33,59 @@ namespace Course.UI.Services.Concrete
             _serviceApiSettings = serviceApiSettings.Value;
         }
 
-        public Task<TokenResponse> GetAccessTokenByRefreshToken()
+        public async Task<TokenResponse> GetAccessTokenByRefreshToken()
         {
-            throw new NotImplementedException();
+            var refreshToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+           
+            _httpClient.BaseAddress = new Uri(_serviceApiSettings.IdentityBaseUri);
+            var request = await _httpClient.PostAsync("api/Auth/refresh-token", null).ConfigureAwait(false);
+            var content = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var token = JsonConvert.DeserializeObject<TokenResponse>(content);
+
+
+            var authenticationTokens = new List<AuthenticationToken>()
+            {
+                new AuthenticationToken{ Name=OpenIdConnectParameterNames.AccessToken,Value=token.Token},
+                new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefleshToken},
+                new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= token.Expiration.ToString("o",CultureInfo.InvariantCulture)}
+            };
+
+            var authenticationResult = await _httpContextAccessor.HttpContext.AuthenticateAsync();
+
+            var properties = authenticationResult.Properties;
+            properties.StoreTokens(authenticationTokens);
+
+            await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, authenticationResult.Principal, properties);
+
+            return token;
         }
 
-        public Task RevokeRefreshToken()
-        {
-            throw new NotImplementedException();
-        }
+    
 
-        public class RefleshTokenResponse
+
+        public async Task<IResult> RevokeRefreshToken()
         {
-            public string RefreshToken { get; set; }
+            var refreshToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+
+            var postRequest = new StringContent(JsonConvert.SerializeObject(new  { token = refreshToken }), Encoding.UTF8, "application/json");
+          
+            _httpClient.BaseAddress = new Uri(_serviceApiSettings.IdentityBaseUri);
+            var request = await _httpClient.PostAsync("api/Auth/revoke-token", postRequest).ConfigureAwait(false);
+            var content = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
+            
+            
+            var response = JsonConvert.DeserializeObject<RevokeRefreshTokenResponseModel>(content.ToString());
+
+            if (response.IsSuccess)
+            {         
+                
+                return new SuccessResult(response.Message);
+            }
+           
+            return new ErrorResult(response.Message); 
+
         }
+ 
 
         public async Task<IResult> SignIn(SignInModel signinInput)
         {
