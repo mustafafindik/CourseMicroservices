@@ -48,11 +48,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Services.Payment", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{8CA79E95-B92D-4E2A-BEE3-7BE2F35B13D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.Gateway", "Gateways\Course.Gateway\Course.Gateway.csproj", "{54BC449A-99BF-4058-87BE-2962528EA85E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.Gateway", "Gateways\Course.Gateway\Course.Gateway.csproj", "{54BC449A-99BF-4058-87BE-2962528EA85E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{13B80EC1-B73C-488A-85E5-7264DEB3F6C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course.UI", "UI\Course.UI\Course.UI.csproj", "{99366FF8-3667-4FE9-9271-5B9FDBB2B27E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Course.UI", "UI\Course.UI\Course.UI.csproj", "{99366FF8-3667-4FE9-9271-5B9FDBB2B27E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

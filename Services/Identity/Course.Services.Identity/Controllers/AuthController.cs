@@ -1,4 +1,5 @@
 ﻿using Course.Services.Identity.Dtos;
+using Course.Services.Identity.Models;
 using Course.Services.Identity.Services.Abstract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +31,10 @@ namespace Course.Services.Identity.Controllers
                 return BadRequest(userToLogin.Message);
             }
 
-            var result = _authService.CreateAccessToken(userToLogin.Data);
+            var result = _authService.CreateAccessToken(userToLogin.Data,ipAddress());
             if (result.IsSuccess)
             {
-                setTokenCookie(result.Data.Token);
+                setTokenCookie(result.Data.RefleshToken);
                 return Ok(result.Data);
             }
 
@@ -51,7 +52,7 @@ namespace Course.Services.Identity.Controllers
             }
 
             var registerResult = await _authService.SignUp(signupDto);
-            var result = _authService.CreateAccessToken(registerResult.Data);
+            var result = _authService.CreateAccessToken(registerResult.Data,ipAddress());
             if (result.IsSuccess)
             {
                 return Ok(result.Data);
@@ -59,6 +60,41 @@ namespace Course.Services.Identity.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            var response = await _authService.RefreshToken(refreshToken, ipAddress());
+            if (response.IsSuccess)
+            {
+                setTokenCookie(response.Data.RefleshToken);
+                return Ok(response.Data);
+            }
+
+            return BadRequest(response.Message);
+
+        }
+
+        [HttpPost("revoke-token")]
+        public async Task<IActionResult> RevokeToken([FromBody] RevokeTokenRequest model)
+        {
+            // accept token from request body or cookie
+            var token = model.Token ?? Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(token))
+                return BadRequest(new { message = "Token is required" });
+
+            var response =await _authService.RevokeToken(token, ipAddress());
+
+            if (!response.IsSuccess)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+
+
+
 
 
         private void setTokenCookie(string token)
@@ -69,6 +105,14 @@ namespace Course.Services.Identity.Controllers
                 Expires = DateTime.UtcNow.AddDays(7)
             };
             Response.Cookies.Append("refreshToken", token, cookieOptions);
+        }
+
+        private string ipAddress()
+        {
+            if (Request.Headers.ContainsKey("X-Forwarded-For"))
+                return Request.Headers["X-Forwarded-For"];
+            else
+                return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
         }
     }
 

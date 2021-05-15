@@ -14,6 +14,8 @@ namespace Course.Services.Identity.Services.Abstract
         Task<IDataResult<ApplicationUser>> SignUp(SignupDto registerDto);
         Task<IDataResult<ApplicationUser>> Login(LoginDto loginDto);
         Task<IResult> UserExists(string email);
-        IDataResult<AccessToken> CreateAccessToken(ApplicationUser user);
+        IDataResult<AccessToken> CreateAccessToken(ApplicationUser user,string ipAddress);
+        Task<IDataResult<AccessToken>> RefreshToken(string token, string ipAddress);
+        Task<IResult> RevokeToken(string token, string ipAddress);
     }
 }
