@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -42,14 +43,19 @@ namespace Course.UI.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public class RefleshTokenResponse
+        {
+            public string RefreshToken { get; set; }
+        }
+
         public async Task<IResult> SignIn(SignInModel signinInput)
         {
-            var postRequest = new StringContent(JsonSerializer.Serialize(signinInput), Encoding.UTF8, "application/json");
+            var postRequest = new StringContent(JsonConvert.SerializeObject(signinInput), Encoding.UTF8, "application/json");
             _httpClient.BaseAddress = new Uri(_serviceApiSettings.IdentityBaseUri);
             var request = await _httpClient.PostAsync("api/Auth/login", postRequest).ConfigureAwait(false);
             var content = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var token = JsonSerializer.Deserialize<TokenResponse>(content);
-       
+            var token = JsonConvert.DeserializeObject<TokenResponse>(content);
+  
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, "name", "role");
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -66,8 +72,9 @@ namespace Course.UI.Services.Concrete
             authenticationProperties.IsPersistent = signinInput.IsRemember;
 
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authenticationProperties);
-
+            
             return new SuccessResult();
+
 
         }
     }
