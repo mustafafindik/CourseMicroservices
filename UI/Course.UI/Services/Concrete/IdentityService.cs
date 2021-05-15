@@ -65,7 +65,7 @@ namespace Course.UI.Services.Concrete
             authenticationProperties.StoreTokens(new List<AuthenticationToken>()
             {
                 new AuthenticationToken{ Name=OpenIdConnectParameterNames.AccessToken,Value=token.Token},
-                new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=""},
+                new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefleshToken},
                 new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= token.Expiration.ToString("o",CultureInfo.InvariantCulture)}
             });
 

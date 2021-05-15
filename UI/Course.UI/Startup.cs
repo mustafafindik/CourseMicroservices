@@ -35,7 +35,7 @@ namespace Course.UI
                 opts.LoginPath = "/Auth/SignIn";
                 opts.ExpireTimeSpan = TimeSpan.FromDays(60);
                 opts.SlidingExpiration = true;
-                opts.Cookie.Name = "udemywebcookie";
+                opts.Cookie.Name = "dotnetcoursewebcookie";
             });
         }
 

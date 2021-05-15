@@ -7,6 +7,7 @@ namespace Course.UI.Models.Identity
 {
     public class TokenResponse
     {
+        public string RefleshToken { get; set; }
         public string Token { get; set; }
         public DateTime Expiration { get; set; }
     }

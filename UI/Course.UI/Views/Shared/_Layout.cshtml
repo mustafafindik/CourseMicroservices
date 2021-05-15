@@ -25,6 +25,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav">
+                            <li><a class="dropdown-item" asp-controller="Auth" asp-action="LogOut">Çıkış</a></li>
+                        </ul>
+
+                    }
+
+                    else
+                    {
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignIn">Giriş yap</a>
+                    }
                 </div>
             </div>
         </nav>
