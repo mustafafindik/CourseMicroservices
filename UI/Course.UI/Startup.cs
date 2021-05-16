@@ -1,3 +1,4 @@
+using Course.UI.Handler;
 using Course.UI.Models;
 using Course.UI.Services.Abstract;
 using Course.UI.Services.Concrete;
@@ -31,12 +32,12 @@ namespace Course.UI
             services.AddHttpContextAccessor();
             var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
-
+            services.AddScoped<TokenHandler>();
             services.AddHttpClient<IIdentityService, IdentityService>();
             services.AddHttpClient<IUserService, UserService>(opt =>
            {
                opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
-           });
+           }).AddHttpMessageHandler<TokenHandler>();
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
