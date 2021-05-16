@@ -4,6 +4,7 @@ using Course.Services.Identity.Entities;
 using Course.Services.Identity.Services.Abstract;
 using Course.Services.Identity.Utilities.Jwt;
 using Course.Shared.Results;
+using Course.Shared.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,13 @@ namespace Course.Services.Identity.Services.Concrete
         private readonly ITokenHelper _tokenHelper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
-        public AuthService(UserManager<ApplicationUser> userManager, ApplicationDbContext context, ITokenHelper tokenHelper)
+        private readonly ISharedIdentityService _sharedIdentityService;
+        public AuthService(UserManager<ApplicationUser> userManager, ApplicationDbContext context, ITokenHelper tokenHelper, ISharedIdentityService sharedIdentityService)
         {
             _tokenHelper = tokenHelper;
             _userManager = userManager;
             _context = context;
+            _sharedIdentityService = sharedIdentityService;
         }
 
         public  IDataResult<AccessToken> CreateAccessToken(ApplicationUser user,string ipAddress)
@@ -74,6 +77,18 @@ namespace Course.Services.Identity.Services.Concrete
                 return new ErrorResult("Kullanıcı zaten var");
             }
             return new SuccessResult();
+        }
+
+
+        public async Task<IDataResult<ApplicationUser>> GetUser()
+        {
+            var userId = _sharedIdentityService.GetUserId;
+             var user = await _context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                return new SuccessDataResult<ApplicationUser>(user, "Kullancı Alındı");
+            }
+            return new ErrorDataResult<ApplicationUser>("Kullancı Bulunamadı");
         }
 
 

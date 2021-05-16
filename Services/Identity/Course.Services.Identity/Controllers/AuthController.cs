@@ -1,6 +1,7 @@
 ﻿using Course.Services.Identity.Dtos;
 using Course.Services.Identity.Models;
 using Course.Services.Identity.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Course.Services.Identity.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -20,8 +22,8 @@ namespace Course.Services.Identity.Controllers
         {
             _authService = authService;
         }
-      
-        
+
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
@@ -41,7 +43,7 @@ namespace Course.Services.Identity.Controllers
             return BadRequest(result.Message);
         }
 
-
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(SignupDto signupDto)
         {
@@ -61,6 +63,7 @@ namespace Course.Services.Identity.Controllers
             return BadRequest(result.Message);
         }
 
+        [AllowAnonymous]
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken()
         {
@@ -76,6 +79,7 @@ namespace Course.Services.Identity.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpPost("revoke-token")]
         public async Task<IActionResult> RevokeToken([FromBody] RevokeTokenRequest model)
         {
@@ -93,6 +97,17 @@ namespace Course.Services.Identity.Controllers
             return Ok(response);
         }
 
+      
+        [HttpGet("getUser")]
+        public async Task<IActionResult> GetUser()
+        {
+            var response = await _authService.GetUser();
+            if (response.IsSuccess)
+            {
+                return Ok(response.Data);
+            }
+            return NotFound(response);
+        }
 
 
 

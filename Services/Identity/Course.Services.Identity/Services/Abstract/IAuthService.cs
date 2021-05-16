@@ -17,5 +17,6 @@ namespace Course.Services.Identity.Services.Abstract
         IDataResult<AccessToken> CreateAccessToken(ApplicationUser user,string ipAddress);
         Task<IDataResult<AccessToken>> RefreshToken(string token, string ipAddress);
         Task<IResult> RevokeToken(string token, string ipAddress);
+        Task<IDataResult<ApplicationUser>> GetUser();
     }
 }
